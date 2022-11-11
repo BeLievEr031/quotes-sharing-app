@@ -1,0 +1,18 @@
+nav {
+  background-color: #2d3748;
+  width: 80%;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 4px;
+}
+
+.icon_cont {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+}

@@ -1,0 +1,22 @@
+.create {
+  background-color: #2d3748;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  word-wrap: break-word;
+  align-items: center;
+  width: 50%;
+  margin-right: 10px;
+}
+
+.icon_cont {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  flex-direction: column;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+

@@ -1,0 +1,38 @@
+.quote_cont {
+  width: 90%;
+  margin: 5px auto;
+  padding: 10px;
+  background-color: #1f1b2c;
+  border-radius: 10px;
+  user-select: none;
+}
+.author {
+  border-bottom: 1px solid white;
+  width: 100%;
+  padding: 5px;
+  text-transform: capitalize;
+}
+
+.quote {
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.quote span {
+  padding: 2px;
+}
+
+.action_btn {
+  width: 100%;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.action_btn span {
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.rotate_span {
+  transform: rotate(180deg);
+}
