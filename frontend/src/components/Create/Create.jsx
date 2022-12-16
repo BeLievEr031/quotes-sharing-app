@@ -28,7 +28,12 @@ function Create({ quoteValue, quotesArr, setQuotesArr }) {
         </div>
       </div>
 
-      <Pop action="create" quotesArr={quotesArr} setQuotesArr={setQuotesArr} />
+      <Pop
+        action="create"
+        quoteValue={quoteValue}
+        quotesArr={quotesArr}
+        setQuotesArr={setQuotesArr}
+      />
     </>
   );
 }

@@ -11,6 +11,8 @@ function Pop({
   quotesArr,
   setQuotesArr,
 }) {
+  console.log(quoteValue);
+
   const token = window.localStorage.getItem("token");
   const { pop, setPop, quoteBaseUrl } = useContext(DataContext);
   const [currQuote, setCurrQuote] = useState(quoteValue);
@@ -107,8 +109,9 @@ function Pop({
 
             <div className={Style.textarea}>
               <textarea
-                value={currQuote.quote}
+                value={currQuote ? currQuote.quote : ""}
                 placeholder="Write your quote here..."
+                name="quote"
                 onChange={(e) => handleQuoteChange(e)}
               ></textarea>
             </div>

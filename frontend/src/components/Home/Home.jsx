@@ -172,7 +172,16 @@ function Home() {
                   );
                 })
               : likesArr.map((quote, index) => {
-                  return <Like quote={quote} key={index} />;
+                  return (
+                    <Like
+                      quote={quote}
+                      key={index}
+                      quotesArr={quotesArr}
+                      setQuotesArr={setQuotesArr}
+                      likesArr={likesArr}
+                      setLikesArr={setLikesArr}
+                    />
+                  );
                 })}
           </div>
         </div>

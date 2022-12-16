@@ -1,12 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Style from "./Like.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-function Like({ quote }) {
+import { DataContext } from "../../context/DataContextProvider";
+import axios from "axios";
+function Like({ quote, likesArr, setLikesArr, quotesArr, setQuotesArr }) {
   const [like, setLike] = useState(true);
-  const handleUnLikeQuote = () => {
-    setLike(!like);
+  const { quoteBaseUrl } = useContext(DataContext);
+  const handleUnLikeQuote = async () => {
+    try {
+      const user = JSON.parse(window.localStorage.getItem("user"));
+      let idx = quotesArr.findIndex((itrQuote) => {
+        return itrQuote._id === quote._id;
+      });
+
+      let isLike = quote.likes.indexOf(user._id);
+
+      if (isLike !== -1) {
+        quote.likes.splice(isLike, 1);
+        let idx = likesArr.findIndex((itrQuote) => {
+          return itrQuote._id === quote._id;
+        });
+        likesArr.splice(idx, 1);
+        setLikesArr([...likesArr]);
+      } else {
+        quote.likes.push(user._id);
+        setLikesArr([
+          ...likesArr,
+          {
+            ...quote,
+          },
+        ]);
+      }
+
+      quotesArr[idx] = quote;
+
+      setQuotesArr([...quotesArr]);
+      let res = await axios({
+        method: "post",
+        url: `${quoteBaseUrl}/like/${quote._id}`,
+        headers: {
+          token: window.localStorage.getItem("token"),
+        },
+      });
+
+      res = res.data;
+      if (!res.success) {
+        return toast.error(res.msg, {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      }
+
+      setLike(!like);
+    } catch (error) {
+      return toast.error(error.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
+
   const handleCopyQuote = async () => {
     await navigator.clipboard.writeText(quote.quote);
     toast.success("Quote Copied", {
