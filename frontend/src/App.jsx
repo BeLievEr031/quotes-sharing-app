@@ -29,6 +29,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/profile/:userID"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </DataContextProvider>
     </BrowserRouter>

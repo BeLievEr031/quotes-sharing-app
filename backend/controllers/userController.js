@@ -185,6 +185,7 @@ const profile = async (req, res) => {
     user = await UserModel.findById(user._id)
       .populate("quotes")
       .populate("follow")
+      .populate("follower")
       .populate("likeQuotes");
 
     res.json({
@@ -200,6 +201,35 @@ const profile = async (req, res) => {
   }
 };
 
+const singleProfile = async (req, res) => {
+  const { userID } = req.params;
+
+  if (!userID) {
+    res.json({
+      success: false,
+      msg: "User id required..",
+    });
+  }
+
+  try {
+    const user = await UserModel.findById(userID)
+      .populate("quotes")
+      .populate("follow")
+      .populate("follower")
+      .populate("likeQuotes");
+
+    res.json({
+      success: true,
+      msg: "User fetched..",
+      user,
+    });
+  } catch (error) {
+    return res.json({
+      success: false,
+      msg: error.message,
+    });
+  }
+};
 export {
   registerUser,
   loginUser,
@@ -207,4 +237,5 @@ export {
   followUser,
   unFollowUser,
   profile,
+  singleProfile,
 };

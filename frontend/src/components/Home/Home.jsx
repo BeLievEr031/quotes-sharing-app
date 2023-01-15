@@ -41,6 +41,8 @@ function Home() {
 
         res = res.data;
 
+        console.log(res);
+
         if (!res.success) {
           return toast.error(res.msg, {
             position: "top-center",

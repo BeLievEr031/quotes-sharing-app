@@ -7,6 +7,7 @@ import {
   followUser,
   unFollowUser,
   profile,
+  singleProfile
 } from "../controllers/userController.js";
 const userRouter = express.Router();
 
@@ -18,5 +19,7 @@ userRouter.route("/follow/:userID").post(auth, followUser);
 userRouter.route("/unfollow/:userID").post(auth, unFollowUser);
 
 userRouter.route("/profile").get(auth,profile);
+userRouter.route("/profile/:userID").get(auth,profile);
+
 
 export default userRouter;

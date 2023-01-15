@@ -7,6 +7,7 @@ import Pop from "../Pop/Pop";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 function Profile() {
   const navigate = useNavigate();
   const { userBaseUrl } = useContext(DataContext);
@@ -18,7 +19,7 @@ function Profile() {
   const handlePopClosOpen = (quote) => {
     setPop(!pop);
     // quoteValue = quote.quote;
-    setquoteValue(quote.quote)
+    setquoteValue(quote.quote);
     // handleToSetcurrUserQuotes(quote);
   };
 
@@ -48,6 +49,8 @@ function Profile() {
         });
 
         res = res.data;
+
+        console.log(res);
         setUserProfile({
           ...res.user,
         });
@@ -160,7 +163,11 @@ function Profile() {
                             delete_forever
                           </span>
                         </div>
-                        <Pop handleToSetcurrUserQuotes={handleToSetcurrUserQuotes} action="update" quoteValue={quote} />
+                        {/* <Pop
+                          handleToSetcurrUserQuotes={handleToSetcurrUserQuotes}
+                          action="update"
+                          quoteValue={quote}
+                        /> */}
                       </div>
                     );
                   })
@@ -175,14 +182,14 @@ function Profile() {
                             key={index}
                             className={Style.follower_card}
                             onClick={() => {
-                              navigate(`/profile`);
+                              navigate(`/profile/shdj`);
                             }}
                           >
                             <h2>sandeep Rajak</h2>
                           </div>
                         );
                       })
-                    : "jkjoipj"}
+                    : ""}
                 </div>
               );
             } else if (dataToDisplay === "following") {
@@ -193,7 +200,7 @@ function Profile() {
                         return (
                           <div
                             onClick={() => {
-                              navigate("/profile");
+                              navigate("/profile/dfdf");
                             }}
                             key={index}
                             className={Style.following_card}
